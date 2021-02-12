@@ -1,0 +1,160 @@
+@font-face {
+  font-family: Mali;
+  src: url("../public/Mali/Mali-Regular.ttf");
+}
+
+@font-face {
+  font-family: Mali-italic;
+  src: url("../public/Mali/Mali-Italic.ttf");
+}
+
+@font-face {
+  font-family: Mali-semiBoldItalic;
+  src: url("../public/Mali/Mali-SemiBoldItalic.ttf");
+}
+
+@font-face {
+  font-family: Mali-bold;
+  src: url("../public/Mali/Mali-Bold.ttf");
+}
+
+/* https://colorhunt.co/palette/192115 */
+$primaryColor : #ddf3f5 ; 
+$secondarColor : #a6dcef ; 
+$tertiaryColor : #f2aaaa ; 
+$quadraryColor : #e36387 ; 
+
+$catBorderWidth : 15px ;
+
+.container-center {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  font-family: Mali;
+  background: radial-gradient($primaryColor 60%, $secondarColor)
+}
+
+.container-spread {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  font-family: Mali;
+  background: radial-gradient($primaryColor 60%, $secondarColor)
+}
+
+.btn-main-summon {
+  margin: auto;
+  width: 400px;
+  color: $quadraryColor; 
+  padding: 30px;
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  .summon, .a{
+    display: block;
+  }
+
+  .summon{
+    text-transform: capitalize;
+    font-family: Mali-bold ;
+    font-size: 50px;
+  }
+
+  .a{
+    font-family: Mali ;
+    font-size: 35px;
+  }
+
+  .calming{
+    font-family: Mali-semiBoldItalic ;
+    font-size: 50px;
+  }
+
+  .cat{
+    font-family: Mali-italic ;
+    font-size: 60px;
+  }
+
+}
+
+
+.btn-small-summon {
+  margin: auto;
+  width: 500px;
+  color: $quadraryColor; 
+  display: block;
+  padding: 15px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  flex: 0 0 25%;
+
+  .summon{
+    text-transform: capitalize;
+    font-family: Mali-bold ;
+    font-size: 35px;
+  }
+
+  .a{
+    font-family: Mali ;
+    font-size: 25px;
+  }
+
+  .calming{
+    font-family: Mali-semiBoldItalic ;
+    font-size: 35px;
+  }
+
+  .cat{
+    font-family: Mali-italic ;
+    font-size: 40px;
+  }
+
+}
+
+.btn-main-summon:hover, .btn-small-summon:hover{
+  border-radius: 300px;
+  text-decoration: underline ;
+}
+
+.container-summonedCat{
+  text-align: center;
+  position: relative;
+  height: 90%;
+  max-width: 80%;
+  margin: auto;
+
+  div{
+    height: 100%;
+  }
+
+  .img-cat{
+    border: 15px #a6dcef inset;
+    border-top: 0px;
+    cursor: pointer;
+    height: 100%;
+   }
+
+   .img-caption{
+    background: rgba(242, 170, 170, 0.8);
+    color: white;
+    font-size: 30px;
+    margin: auto;
+    bottom: 58px;
+    position: relative;
+    cursor: pointer;
+    height: auto;
+   }
+
+
+}
+
