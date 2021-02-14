@@ -1,6 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import * as React from "react";
+import { quotes } from "./quotes";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeadphones } from '@fortawesome/free-solid-svg-icons'
 
 export const SummonerButton = React.forwardRef(({ onClick, href }, ref) => {
   return (
@@ -36,11 +39,30 @@ export const Summoner = () => {
   );
 };
 
+export const Purring = () => {
+
+  const playRandomAudio = () => {
+    let audioElm = document.getElementById('cat-audio')
+    audioElm.play()
+  }
+
+  return (
+    <div className="btn-purring">
+        <button onClick={playRandomAudio}> <FontAwesomeIcon icon={faHeadphones}/></button>
+        <audio preload="auto" id="cat-audio" src="/purring0-short.mp3">
+        Your browser does not support the
+        <code>audio</code> element.
+      </audio>
+    </div>
+  );
+};
+
 export const SummonedCat = () => {
   let [catId, setCatId] = React.useState(1);
   let catUrl = `/cats/cats (${catId}).jpeg`;
 
   const summonNewCat = (catId) => {
+    if (catId > 17) catId = 1;
     setCatId(catId);
   };
 
@@ -57,9 +79,16 @@ export const SummonedCat = () => {
     }px`;
   };
 
-  React.useEffect(()=>{
-    setTimeout(fixCaptionWidth,100)
-  })
+  React.useEffect(() => {
+    setTimeout(fixCaptionWidth, 100);
+  });
+
+  const pickOneQuote = () => {
+    let nb = quotes.length;
+    return quotes[Math.floor(Math.random() * nb)];
+  };
+
+  let quote = pickOneQuote();
 
   return (
     <React.Fragment>
@@ -68,12 +97,17 @@ export const SummonedCat = () => {
           className="container-summonedCat"
           onClick={() => summonNewCat(catId++)}
         >
-          <img className="img-cat" id="summonedCat" src={catUrl} onLoad={fixCaptionWidth}/>
+          <img
+            className="img-cat"
+            id="summonedCat"
+            src={catUrl}
+            onLoad={fixCaptionWidth}
+          />
           <p className="img-caption" id="summonedCat-caption">
-            A calming cat a day makes you happy.
+            {quote}
           </p>
-          {/*<SmallSummonerButton />*/}
         </div>
+        <Purring />
       </div>
     </React.Fragment>
   );
