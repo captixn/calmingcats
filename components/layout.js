@@ -1,5 +1,5 @@
 import Head from "next/head";
-import * as React from "react"
+import * as React from "react";
 
 export const siteTitle = "Calming Cats";
 
@@ -19,7 +19,7 @@ export default function Layout({ children }) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-        {children}
+      {children}
     </React.Fragment>
   );
 }

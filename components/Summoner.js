@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import * as React from "react";
-import { quotes } from "./quotes";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeadphones } from '@fortawesome/free-solid-svg-icons'
+import { quotes, images } from "./content";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeadphones } from "@fortawesome/free-solid-svg-icons";
 
 export const SummonerButton = React.forwardRef(({ onClick, href }, ref) => {
   return (
@@ -40,16 +40,18 @@ export const Summoner = () => {
 };
 
 export const Purring = () => {
-
   const playRandomAudio = () => {
-    let audioElm = document.getElementById('cat-audio')
-    audioElm.play()
-  }
+    let audioElm = document.getElementById("cat-audio");
+    audioElm.play();
+  };
 
   return (
     <div className="btn-purring">
-        <button onClick={playRandomAudio}> <FontAwesomeIcon icon={faHeadphones}/></button>
-        <audio preload="auto" id="cat-audio" src="/purring0-short.mp3">
+      <button title="Summon purring" onClick={playRandomAudio}>
+        {" "}
+        <FontAwesomeIcon icon={faHeadphones} />
+      </button>
+      <audio preload="auto" id="cat-audio" src="/purring0-short.mp3">
         Your browser does not support the
         <code>audio</code> element.
       </audio>
@@ -58,12 +60,11 @@ export const Purring = () => {
 };
 
 export const SummonedCat = () => {
-  let [catId, setCatId] = React.useState(1);
-  let catUrl = `/cats/cats (${catId}).jpeg`;
 
-  const summonNewCat = (catId) => {
-    if (catId > 17) catId = 1;
-    setCatId(catId);
+  let [image,setImage] = React.useState('cat0.jpg')
+
+  const summonNewCat = () => {
+    setImage(pickOne(images))
   };
 
   const fixCaptionWidth = () => {
@@ -72,7 +73,6 @@ export const SummonedCat = () => {
     capElem.style.width = `${imgElem.clientWidth}px`;
     capElem.style.bottom = `${
       capElem.clientHeight +
-      3 +
       parseInt(
         window.getComputedStyle(imgElem).borderBottomWidth.replace("px", "")
       )
@@ -83,25 +83,28 @@ export const SummonedCat = () => {
     setTimeout(fixCaptionWidth, 100);
   });
 
-  const pickOneQuote = () => {
+  const pickOne = (array) => {
     let nb = quotes.length;
-    return quotes[Math.floor(Math.random() * nb)];
+    return array[Math.floor(Math.random() * nb)];
   };
 
-  let quote = pickOneQuote();
+
+  let quote = pickOne(quotes);
+  let imageSrc = `/cats/${image}`
 
   return (
     <React.Fragment>
       <div className="container-spread">
         <div
           className="container-summonedCat"
-          onClick={() => summonNewCat(catId++)}
+          onClick={() => summonNewCat()}
         >
           <img
             className="img-cat"
             id="summonedCat"
-            src={catUrl}
+            src={imageSrc}
             onLoad={fixCaptionWidth}
+            title="Click to summon another cat"
           />
           <p className="img-caption" id="summonedCat-caption">
             {quote}

@@ -52,7 +52,6 @@ $catBorderWidth: 15px;
 
   .btn-purring {
     position: relative;
-    top: $catBorderWidth;
 
     button {
       cursor: pointer;
@@ -169,5 +168,30 @@ $catBorderWidth: 15px;
     position: relative;
     cursor: pointer;
     height: auto;
+  }
+}
+
+.copyright {
+  position: fixed;
+  bottom: 0px;
+  right: 15px;
+
+  p {
+    font-size: 10px;
+    font-family: Mali;
+  }
+}
+
+.modal {
+  .modal-header{
+    background-color: $primaryColor;
+  }
+  .modal-title {
+    font-family: Mali;
+    color: $quadraryColor;
+  }
+  .btn-close-modal{
+    background-color: $primaryColor;
+    color: $quadraryColor;
   }
 }

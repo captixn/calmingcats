@@ -15,3 +15,24 @@ export const quotes = [
     'In order to carry a positive action, we must develop here a positive vision',
     'Attitude is a little thing that makes a big difference.'
 ]
+
+export const images = [
+    'cats (1).jpeg',
+    'cats (2).jpeg',
+    'cats (3).jpeg',
+    'cats (4).jpeg',
+    'cats (5).jpeg',
+    'cats (6).jpeg',
+    'cats (7).jpeg',
+    'cats (8).jpeg',
+    'cats (9).jpeg',
+    'cats (10).jpeg',
+    'cats (11).jpeg',
+    'cats (12).jpeg',
+    'cats (13).jpeg',
+    'cats (14).jpeg',
+    'cats (15).jpeg',
+    'cats (16).jpeg',
+    'cats (17).jpeg',
+    'cats (18).jpeg',
+]
