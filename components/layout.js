@@ -9,6 +9,7 @@ export default function Layout({ children }) {
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <title>{siteTitle}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         <meta name="description" content="Feel the calming cats" />
         <meta
           property="og:image"

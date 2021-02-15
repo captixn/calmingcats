@@ -61,10 +61,12 @@ export const Purring = () => {
 
 export const SummonedCat = () => {
 
-  let [image,setImage] = React.useState('cat0.jpg')
+  let [image,setImage] = React.useState('cats (2).jpeg')
 
   const summonNewCat = () => {
-    setImage(pickOne(images))
+    let newImage = pickOne(images)
+    //console.log(`Summoning a new cat with ${newImage}`)
+    setImage(newImage)
   };
 
   const fixCaptionWidth = () => {
@@ -84,13 +86,14 @@ export const SummonedCat = () => {
   });
 
   const pickOne = (array) => {
-    let nb = quotes.length;
+    let nb = array.length;
     return array[Math.floor(Math.random() * nb)];
   };
 
 
   let quote = pickOne(quotes);
   let imageSrc = `/cats/${image}`
+  //console.log(`Loading ${imageSrc}`)
 
   return (
     <React.Fragment>

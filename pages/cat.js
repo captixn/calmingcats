@@ -10,16 +10,22 @@ export default function Cats() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  let web = true
+  if(process.browser){
+    let clientWidth = screen.width
+    if(clientWidth < 1200){
+      web = false
+    }
+  }
+
   return (
     <Layout>
-      <Modal className="modal" show={show} onHide={handleClose}>
+      <Modal className="modal" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title className="modal-title">Click to summon another cat</Modal.Title>
+          <Modal.Title className="modal-title">{(web)?"Click":"Touch"} to summon another cat</Modal.Title>
         </Modal.Header>
         <Modal.Footer>
-          <Button variant="secondary" className="btn-close-modal" onClick={handleClose}>
-            Close
-          </Button>
+          <Button variant="secondary" className="btn-close-modal" onClick={handleClose}>Close</Button>
         </Modal.Footer>
       </Modal>
       <SummonedCat />

@@ -183,15 +183,59 @@ $catBorderWidth: 15px;
 }
 
 .modal {
-  .modal-header{
+  .modal-header {
     background-color: $primaryColor;
   }
   .modal-title {
     font-family: Mali;
     color: $quadraryColor;
   }
-  .btn-close-modal{
+  .btn-close-modal {
     background-color: $primaryColor;
     color: $quadraryColor;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  body {
+    height: 100%;
+    width: 100%;
+  }
+
+  .copyright{
+    bottom: 0px;
+    margin-bottom: 5px;
+  }
+
+  .container-spread {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .container-summonedCat {
+
+      width: 100%;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .img-cat {
+        width: 100%;
+        height: auto;
+        border-top: $catBorderWidth;
+        border: 15px #a6dcef inset;
+      }
+    }
+    .btn-purring {
+      position: absolute;
+      bottom: 45px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      button{
+        border-top: 2px solid $tertiaryColor;
+      }
+    }
   }
 }
