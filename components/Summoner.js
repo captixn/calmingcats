@@ -70,6 +70,7 @@ export const SummonedCat = () => {
   };
 
   const fixCaptionWidth = () => {
+    /*
     let imgElem = document.getElementById("summonedCat");
     let capElem = document.getElementById("summonedCat-caption");
     capElem.style.width = `${imgElem.clientWidth}px`;
@@ -79,6 +80,7 @@ export const SummonedCat = () => {
         window.getComputedStyle(imgElem).borderBottomWidth.replace("px", "")
       )
     }px`;
+    */
   };
 
   React.useEffect(() => {
@@ -102,9 +104,12 @@ export const SummonedCat = () => {
           className="container-summonedCat"
           onClick={() => summonNewCat()}
         >
-          <img
+          <Image
             className="img-cat"
             id="summonedCat"
+            layout="fill"
+            objectFit="contain"
+            loading="eager"
             src={imageSrc}
             onLoad={fixCaptionWidth}
             title="Click to summon another cat"
