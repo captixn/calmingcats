@@ -19,6 +19,7 @@ export default function Layout({ children }) {
         />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
+        <link href="/fontawesome/css/all.css" rel="stylesheet"/>
       </Head>
       {children}
     </React.Fragment>

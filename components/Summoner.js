@@ -2,8 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import * as React from "react";
 import { quotes, images } from "./content";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeadphones } from "@fortawesome/free-solid-svg-icons";
 
 export const SummonerButton = React.forwardRef(({ onClick, href }, ref) => {
   return (
@@ -49,7 +47,7 @@ export const Purring = () => {
     <div className="btn-purring">
       <button title="Summon purring" onClick={playRandomAudio}>
         {" "}
-        <FontAwesomeIcon icon={faHeadphones} />
+        <i className="fas fa-headphones"></i>
       </button>
       <audio preload="auto" id="cat-audio" src="/purring0-short.mp3">
         Your browser does not support the
@@ -68,24 +66,6 @@ export const SummonedCat = () => {
     //console.log(`Summoning a new cat with ${newImage}`)
     setImage(newImage)
   };
-
-  const fixCaptionWidth = () => {
-    /*
-    let imgElem = document.getElementById("summonedCat");
-    let capElem = document.getElementById("summonedCat-caption");
-    capElem.style.width = `${imgElem.clientWidth}px`;
-    capElem.style.bottom = `${
-      capElem.clientHeight +
-      parseInt(
-        window.getComputedStyle(imgElem).borderBottomWidth.replace("px", "")
-      )
-    }px`;
-    */
-  };
-
-  React.useEffect(() => {
-    setTimeout(fixCaptionWidth, 100);
-  });
 
   const pickOne = (array) => {
     let nb = array.length;
@@ -109,9 +89,7 @@ export const SummonedCat = () => {
             id="summonedCat"
             layout="fill"
             objectFit="contain"
-            loading="eager"
             src={imageSrc}
-            onLoad={fixCaptionWidth}
             title="Click to summon another cat"
           />
           <p className="img-caption" id="summonedCat-caption">
