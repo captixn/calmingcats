@@ -1,5 +1,7 @@
 import Head from "next/head";
 import * as React from "react";
+import ReactGA from 'react-ga';
+ReactGA.initialize('G-184HWGEQ65')
 
 export const siteTitle = "Calming Cats";
 
