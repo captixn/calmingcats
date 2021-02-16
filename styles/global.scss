@@ -188,6 +188,11 @@ $catBorderWidth: 15px;
   }
 }
 
+.credits{
+  text-align: justify;
+  max-width: 80%;
+}
+
 .modal {
   .modal-header {
     background-color: $primaryColor;

@@ -3,7 +3,7 @@ import * as React from "react";
 export const Credits = React.forwardRef(({ onClick, href }, ref) => {
   return (
     <div className="credits">
-      <strong>Made with love by:</strong>
+      <p><strong>Made with love by:</strong></p>
       <p>
         Author :{" "}
         <a href="https://www.linkedin.com/in/acvkp/">Alexandre Pinon</a>
@@ -15,6 +15,9 @@ export const Credits = React.forwardRef(({ onClick, href }, ref) => {
       <br />
       <p><strong>With the contribution of :</strong></p>
       <p>Marie &amp; Léo, John Doe</p>
+      <br />
+      <p><strong>Do you have photos and soothing quotes that you want to feature?</strong></p>
+      <p>Drop an email at <br/><a href="mailto:calmingcatsme@gmail.com">calmingcatsme@gmail.com</a></p>
     </div>
   );
 });
