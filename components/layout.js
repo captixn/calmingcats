@@ -10,7 +10,7 @@ export default function Layout({ children }) {
         <link rel="icon" href="/favicon.ico" />
         <title>{siteTitle}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-        <meta name="description" content="Feel the calming cats" />
+        <meta name="description" content="Summon a calming cat." />
         <meta
           property="og:image"
           content={`https://og-image.vercel.app/${encodeURI(
