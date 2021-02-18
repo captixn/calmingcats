@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "optimizeImages": "powershell ./optimizeImages.ps1"
   },
   "dependencies": {
     "bootstrap": "^4.6.0",

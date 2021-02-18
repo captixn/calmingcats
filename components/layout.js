@@ -1,21 +1,10 @@
 import Head from "next/head";
 import * as React from "react";
-import ReactGA from 'react-ga';
 
 
 export const siteTitle = "Calming Cats";
 
 export default function Layout({ children }) {
-
-  React.useEffect(()=>{
-    if(process.browser){
-      ReactGA.initialize('G-184HWGEQ65', {
-        debug: false,
-      });
-      ReactGA.pageview(window.location.pathname + window.location.search);
-    }
-  })
-
 
   return (
     <React.Fragment>

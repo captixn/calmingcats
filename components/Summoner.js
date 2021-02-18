@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import * as React from "react";
-import { quotes, images } from "./content";
+import { quotes } from "./content";
 
 export const SummonerButton = React.forwardRef(({ onClick, href }, ref) => {
   return (
@@ -57,39 +57,52 @@ export const Purring = () => {
   );
 };
 
-export const SummonedCat = () => {
+export const pickOne = (array) => {
+  let nb = array.length;
+  return array[Math.floor(Math.random() * nb)];
+};
 
-  let [image,setImage] = React.useState('cats (2).jpeg')
+export const SummonedCat = ({images}) => {
 
-  const summonNewCat = () => {
-    let newImage = pickOne(images)
-    //console.log(`Summoning a new cat with ${newImage}`)
-    setImage(newImage)
-  };
+  //console.log(`Image loaded ${JSON.stringify(images)}`)
 
-  const pickOne = (array) => {
-    let nb = array.length;
-    return array[Math.floor(Math.random() * nb)];
+  // always load the image ahead
+  let [image, setImage] = React.useState("cats (2).jpeg")
+  let [nextImage, setNextImage] = React.useState(pickOne(images));
+
+  const summonNewCat = (nextImage) => {
+    // set previouly next image as current image
+    setImage(nextImage);
+    // load next image
+    let newNextImage = pickOne(images);
+    setNextImage(newNextImage)
   };
 
 
   let quote = pickOne(quotes);
-  let imageSrc = `/cats/${image}`
+  let imageSrc = `/cats/${image}`;
+  let nextImageSrc = `/cats/${nextImage}`
   //console.log(`Loading ${imageSrc}`)
 
   return (
     <React.Fragment>
       <div className="container-spread">
-        <div
-          className="container-summonedCat"
-          onClick={() => summonNewCat()}
-        >
+        <div className="container-summonedCat" onClick={() => summonNewCat(nextImage)}>
           <Image
             className="img-cat"
             id="summonedCat"
             layout="fill"
+            priority="true"
             objectFit="contain"
             src={imageSrc}
+            title="Click to summon another cat"
+          />
+          <Image
+            className="img-cat next-image"
+            layout="fill"
+            priority="true"
+            objectFit="contain"
+            src={nextImageSrc}
             title="Click to summon another cat"
           />
           <p className="img-caption" id="summonedCat-caption">

@@ -163,6 +163,10 @@ $catBorderWidth: 15px;
     height: 100%;
   }
 
+  .next-image{
+    display: none !important;
+  }
+
   .img-caption {
     color: $quadraryColor;
     background-color: rgba(255,255,255,0.8);
