@@ -73,7 +73,7 @@ export const SummonedCat = ({images}) => {
   let [secondImage, setSecondImage] = React.useState(pickOne(images));
   let [showingImageIndex, setShowingImageIndex ] = React.useState(0)
 
-  const summonNewCat = (secondImage) => {
+  const summonNewCat = () => {
     let newNextImage = pickOne(images);
     if(showingImageIndex === 0){
       setShowingImageIndex(1)
@@ -94,7 +94,7 @@ export const SummonedCat = ({images}) => {
   return (
     <React.Fragment>
       <div className="container-spread">
-        <div className="container-summonedCat" onClick={() => summonNewCat(secondImage)}>
+        <div className="container-summonedCat" onClick={() => summonNewCat()}>
           <Image
             className={`img-cat ${(showingImageIndex === 0)?'':'next-image'}`}
             id="summonedCat"
