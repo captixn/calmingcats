@@ -66,30 +66,37 @@ export const SummonedCat = ({images}) => {
 
   //console.log(`Image loaded ${JSON.stringify(images)}`)
 
-  // always load the image ahead
-  let [image, setImage] = React.useState("cats (2).jpeg")
-  let [nextImage, setNextImage] = React.useState(pickOne(images));
+  // load two images, but only display one of them
+  // when a new cat is summoned, the image was hidden becomes visible,
+  // and the image was visible becomes hidden, and replaced by a new image
+  let [firstimage, setFirstImage] = React.useState("cats (2).jpeg")
+  let [secondImage, setSecondImage] = React.useState(pickOne(images));
+  let [showingImageIndex, setShowingImageIndex ] = React.useState(0)
 
-  const summonNewCat = (nextImage) => {
-    // set previouly next image as current image
-    setImage(nextImage);
-    // load next image
+  const summonNewCat = (secondImage) => {
     let newNextImage = pickOne(images);
-    setNextImage(newNextImage)
+    if(showingImageIndex === 0){
+      setShowingImageIndex(1)
+      setFirstImage(newNextImage)
+    }
+    if(showingImageIndex === 1){
+      setShowingImageIndex(0)
+      setSecondImage(newNextImage)
+    }
   };
 
 
   let quote = pickOne(quotes);
-  let imageSrc = `/cats/${image}`;
-  let nextImageSrc = `/cats/${nextImage}`
+  let imageSrc = `/cats/${firstimage}`;
+  let nextImageSrc = `/cats/${secondImage}`
   //console.log(`Loading ${imageSrc}`)
 
   return (
     <React.Fragment>
       <div className="container-spread">
-        <div className="container-summonedCat" onClick={() => summonNewCat(nextImage)}>
+        <div className="container-summonedCat" onClick={() => summonNewCat(secondImage)}>
           <Image
-            className="img-cat"
+            className={`img-cat ${(showingImageIndex === 0)?'':'next-image'}`}
             id="summonedCat"
             layout="fill"
             priority="true"
@@ -98,7 +105,7 @@ export const SummonedCat = ({images}) => {
             title="Click to summon another cat"
           />
           <Image
-            className="img-cat next-image"
+            className={`img-cat ${(showingImageIndex === 1)?'':'next-image'}`}
             layout="fill"
             priority="true"
             objectFit="contain"
