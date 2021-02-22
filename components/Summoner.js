@@ -38,18 +38,20 @@ export const Summoner = () => {
 };
 
 export const Purring = () => {
-  const playRandomAudio = () => {
+  const playAudio = () => {
     let audioElm = document.getElementById("cat-audio");
     audioElm.play();
   };
 
   return (
     <div className="btn-purring">
-      <button title="Summon purring" onClick={playRandomAudio}>
+      {/** Disabled for now, instead controls are used
+      <button title="Summon purring" onClick={playAudio}>
         {" "}
         <i className="fas fa-headphones"></i>
       </button>
-      <audio preload="auto" id="cat-audio" src="/purring0-short.mp3">
+       */}
+      <audio controls preload="auto" id="cat-audio" src="/purring1.mp3">
         Your browser does not support the
         <code>audio</code> element.
       </audio>
@@ -57,9 +59,13 @@ export const Purring = () => {
   );
 };
 
-export const pickOne = (array) => {
-  let nb = array.length;
-  return array[Math.floor(Math.random() * nb)];
+export const pickOne = (array, exclude = []) => {
+  let filteredArray = array.filter( v => ! exclude.includes(v))
+  let pickedOne = filteredArray[Math.floor(Math.random() * filteredArray.length)]
+  if(pickedOne === undefined){
+    throw new Error(`Couldn't select the next image with newNextImage -- excluding ${JSON.stringify(exclude)}, among ${JSON.stringify(array)}`)
+  }
+  return pickedOne;
 };
 
 export const SummonedCat = ({images}) => {
@@ -71,10 +77,19 @@ export const SummonedCat = ({images}) => {
   // and the image was visible becomes hidden, and replaced by a new image
   let [firstimage, setFirstImage] = React.useState("cats (2).jpeg")
   let [secondImage, setSecondImage] = React.useState(pickOne(images));
+  let [seenPic, setSeenPic ] = React.useState([])
   let [showingImageIndex, setShowingImageIndex ] = React.useState(0)
 
   const summonNewCat = () => {
-    let newNextImage = pickOne(images);
+    if(seenPic.length == images.length){
+      // reset seenPic
+      seenPic = []
+      setSeenPic(seenPic)
+    }
+    let newNextImage = pickOne(images, seenPic);
+    seenPic.push(newNextImage)
+
+    setSeenPic(seenPic)
     if(showingImageIndex === 0){
       setShowingImageIndex(1)
       setFirstImage(newNextImage)
