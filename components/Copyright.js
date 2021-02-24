@@ -29,6 +29,8 @@ export const Credits = React.forwardRef(({ onClick, href }, ref) => {
         <strong>With the contribution of :</strong>
       </p>
       <p>Marie &amp; Léo, John Doe</p>
+      <p>Cindy and <a href="/_next/image?url=%2Fcats%2FIMG_8484.JPG&w=828&q=100">her cat</a></p>
+      <p>Natasha and <a href="/_next/image?url=%2Fcats%2Fimage5.jpeg&w=828&q=100">Luna</a></p>
     </div>
   );
 });
