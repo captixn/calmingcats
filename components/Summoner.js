@@ -85,13 +85,6 @@ export const SummonedCat = ({images}) => {
     quote : pickOne(quotes)
   }
   let [s, setState] = React.useState(calmingCatStateDefault)
- 
-  /*
-  let [firstimage, setFirstImage] = React.useState("cats (2).jpeg")
-  let [secondImage, setSecondImage] = React.useState(pickOne(images));
-  let [seenPic, setSeenPic ] = React.useState([])
-  let [showingImageIndex, setShowingImageIndex ] = React.useState(0)
-  */
 
   const summonNewCat = () => {
     let newSeenPic = s.seenPic
