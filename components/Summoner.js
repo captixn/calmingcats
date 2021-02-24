@@ -75,43 +75,74 @@ export const SummonedCat = ({images}) => {
   // load two images, but only display one of them
   // when a new cat is summoned, the image was hidden becomes visible,
   // and the image was visible becomes hidden, and replaced by a new image
+  let firstImageDefault =  pickOne(images)
+  let calmingCatStateDefault = {
+    firstImage : firstImageDefault,
+    secondImage : pickOne(images,[firstImageDefault]),
+    seenPic : [],
+    seenQuote: [],
+    showingImageIndex : 0,
+    quote : pickOne(quotes)
+  }
+  let [s, setState] = React.useState(calmingCatStateDefault)
+ 
+  /*
   let [firstimage, setFirstImage] = React.useState("cats (2).jpeg")
   let [secondImage, setSecondImage] = React.useState(pickOne(images));
   let [seenPic, setSeenPic ] = React.useState([])
   let [showingImageIndex, setShowingImageIndex ] = React.useState(0)
+  */
 
   const summonNewCat = () => {
-    if(seenPic.length == images.length){
-      // reset seenPic
-      seenPic = []
-      setSeenPic(seenPic)
-    }
-    let newNextImage = pickOne(images, seenPic);
-    seenPic.push(newNextImage)
+    let newSeenPic = s.seenPic
+    let newSeenQuote = s.seenQuote
 
-    setSeenPic(seenPic)
-    if(showingImageIndex === 0){
-      setShowingImageIndex(1)
-      setFirstImage(newNextImage)
+    if(s.seenPic.length == images.length){
+      // reset seenPic
+      newSeenPic = [] 
     }
-    if(showingImageIndex === 1){
-      setShowingImageIndex(0)
-      setSecondImage(newNextImage)
+    if(s.seenQuote.length == quotes.length){
+      // reset seenQuote
+      newSeenQuote = []
     }
+    let newNextImage = pickOne(images,newSeenPic);
+    let newQuote = pickOne(quotes, newSeenQuote)
+    s.seenPic.push(newNextImage)
+    s.seenQuote.push(newQuote)
+
+    if(s.showingImageIndex === 0){
+      setState({
+        ...s,
+        seenPic : newSeenPic,
+        seenQuote: newSeenQuote,
+        showingImageIndex: 1,
+        firstImage : newNextImage,
+        quote : newQuote
+      })
+    }
+    if(s.showingImageIndex === 1){
+      setState({
+        ...s,
+        seenPic : newSeenPic,
+        seenQuote: newSeenQuote,
+        showingImageIndex: 0,
+        secondImage : newNextImage,
+        quote : newQuote
+      })
+    }
+
   };
 
 
-  let quote = pickOne(quotes);
-  let imageSrc = `/cats/${firstimage}`;
-  let nextImageSrc = `/cats/${secondImage}`
-  //console.log(`Loading ${imageSrc}`)
+  let imageSrc = `/cats/${s.firstImage}`;
+  let nextImageSrc = `/cats/${s.secondImage}`
 
   return (
     <React.Fragment>
       <div className="container-spread">
         <div className="container-summonedCat" onClick={() => summonNewCat()}>
           <Image
-            className={`img-cat ${(showingImageIndex === 0)?'':'next-image'}`}
+            className={`img-cat ${(s.showingImageIndex === 0)?'':'next-image'}`}
             id="summonedCat"
             layout="fill"
             priority="true"
@@ -120,7 +151,7 @@ export const SummonedCat = ({images}) => {
             title="Click to summon another cat"
           />
           <Image
-            className={`img-cat ${(showingImageIndex === 1)?'':'next-image'}`}
+            className={`img-cat ${(s.showingImageIndex === 1)?'':'next-image'}`}
             layout="fill"
             priority="true"
             objectFit="contain"
@@ -128,7 +159,7 @@ export const SummonedCat = ({images}) => {
             title="Click to summon another cat"
           />
           <p className="img-caption" id="summonedCat-caption">
-            {quote}
+            {s.quote}
           </p>
         </div>
         <Purring />
